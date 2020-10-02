@@ -6,7 +6,7 @@ function setup(){
   P1 = new Player1(200,200,3,3);
 }
 
-funtion draw(){
+function draw(){
   background("green");
 
   P1.drawMe();
