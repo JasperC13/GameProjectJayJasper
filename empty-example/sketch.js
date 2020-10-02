@@ -7,10 +7,8 @@ function setup(){
 }
 
 function draw(){
-  background("green");
-
   p1.drawMe();
-  p1.moveme();
+  p1.moveMe();
 }
 
 class Player1 {
