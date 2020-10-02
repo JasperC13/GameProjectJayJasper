@@ -1,7 +1,6 @@
 let soccerField;
 let p1;
 
-
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
 
@@ -9,13 +8,14 @@ function preload() {
 
 
 function setup() {
-  createCanvas(720, 400);
-  image(soccerField, 0, 0);
+  createCanvas(551, 368);
 
-  p1 = new Player1(200,200,3,3);
+
+  p1 = new Player1(95,184,3,3);
 }
 
 function draw(){
+  image(soccerField, 0, 0)
   p1.drawMe();
   p1.moveMe();
 }
