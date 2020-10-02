@@ -1,16 +1,16 @@
-let P1;
+let p1;
 
 function setup(){
   createCanvas(500,400);
 
-  P1 = new Player1(200,200,3,3);
+  p1 = new Player1(200,200,3,3);
 }
 
 function draw(){
   background("green");
 
-  P1.drawMe();
-  P1.moveme();
+  p1.drawMe();
+  p1.moveme();
 }
 
 class Player1 {
