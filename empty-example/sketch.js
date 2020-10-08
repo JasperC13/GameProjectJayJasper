@@ -2,6 +2,8 @@ let soccerField;
 let p1;
 let p2;
 let ball;
+let v1;
+let v2;
 
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
@@ -14,6 +16,7 @@ function setup() {
   p1 = new Player1(90,184,3,3);
   p2 = new Player2(461,184,3,3);
   ball = new Ball(275.5,184,1,0);
+  v1 = createVector(1,1);
 }
 
 function draw(){
@@ -107,20 +110,24 @@ class Ball {
   }
 
   moveBall(){
-    this.x = this.x + this.xspeed;
-    this.y = this.y + this.yspeed;
+    this.x += v1.x;
+    this.y += v1.y;
   }
 
   bouceBall(){
-    if(this.x >= p1.x-20 && this.x <= p1.x+20 && this.y > p1.y-20 && this.y < p1.y+20){
-      this.xspeed = -this.xspeed;
-      this.yspeed = -this.yspeed;
-        if(this.xspeed==-1){
-          this.x=this.x-5;
-        }
-        if(this.xspeed==1){
-          this.x=this.x+5
-        }
+    if(dist(p1.x,p1.y,ball.x,ball.y)<=15){
+      let collision1x = (ball.x + p1.x)/2;
+      let collision1y = (ball.y + p1.y)/2;
+      let v2 = createVector(collision1x - p1.x, collision1y - p1.y);
+      v2.div(20);
+      v1.add(v2);
+    }
+    if(dist(p2.x,p2.y,ball.x,ball.y)<=15){
+      let collision2x = (ball.x + p2.x)/2;
+      let collision2y = (ball.y + p2.y)/2;
+      let v3 = createVector(collision2x - p2.x, collision2y - p2.y);
+      v3.div(20);
+      v1.add(v3);
     }
   }
 }
