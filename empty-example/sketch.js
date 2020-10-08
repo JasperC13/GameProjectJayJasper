@@ -4,6 +4,7 @@ let p2;
 let ball;
 let v1;
 let v2;
+let v3;
 
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
