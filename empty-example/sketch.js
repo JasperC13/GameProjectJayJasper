@@ -11,6 +11,7 @@ let borderTop;
 let borderBottom;
 
 
+
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
 }
@@ -39,6 +40,7 @@ function draw(){
   ball.drawBall();
   ball.moveBall();
   ball.bouceBall();
+  ball.bounceBall();
 
   borderTop.drawMe();
   borderRight.drawMe();
@@ -183,6 +185,13 @@ class Ball {
   moveBall(){
     this.x += v1.x;
     this.y += v1.y;
+  }
+
+  bounceBall(){
+    if(this.y = 551){
+      v1 = v1(v1.x,-v1.y)
+    }
+
   }
 
   bouceBall(){
