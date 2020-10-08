@@ -5,6 +5,11 @@ let ball;
 let v1;
 let v2;
 let v3;
+let borderRight;
+let borderleft;
+let borderTop;
+let borderBottom;
+
 
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
@@ -16,7 +21,11 @@ function setup() {
 
   p1 = new Player1(90,184,3,3);
   p2 = new Player2(461,184,3,3);
-  ball = new Ball(275.5,184,1,0);
+  ball = new Ball(275.5,184);
+  borderRight = new Right(551, 1, 551, 368);
+  borderLeft = new Left(1, 1, 1, 368);
+  borderTop = new Top(1,1, 551, 1 );
+  borderBottom = new Bottom(1, 368, 551, 368);
   v1 = createVector(1,1);
 }
 
@@ -31,6 +40,67 @@ function draw(){
   ball.moveBall();
   ball.bouceBall();
 
+  borderTop.drawMe();
+  borderRight.drawMe();
+  borderLeft.drawMe();
+  borderBottom.drawMe();
+
+}
+class Top {
+  constructor(x,y,x2,y2){
+    this.x = x;
+    this.y = y;
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  drawMe(){
+    fill("black");
+    strokeWeight(10);
+    line(this.x, this.y, this.x2, this.y2);
+}
+}
+class Right {
+  constructor(x,y,x2,y2){
+    this.x = x;
+    this.y = y;
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  drawMe(){
+    fill("black");
+    strokeWeight(10);
+    line(this.x, this.y, this.x2, this.y2);
+}
+}
+class Left {
+  constructor(x,y,x2,y2){
+    this.x = x;
+    this.y = y;
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  drawMe(){
+    fill("black");
+    strokeWeight(10);
+    line(this.x, this.y, this.x2, this.y2);
+}
+}
+class Bottom {
+  constructor(x,y,x2,y2){
+    this.x = x;
+    this.y = y;
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  drawMe(){
+    fill("black");
+    strokeWeight(10);
+    line(this.x, this.y, this.x2, this.y2);
+}
 }
 
 class Player1 {
@@ -42,6 +112,7 @@ class Player1 {
   }
 
   drawMe(){
+    strokeWeight(0);
     fill("red");
     ellipse(this.x,this.y,20,20);
   }
@@ -98,11 +169,10 @@ class Player2 {
 }
 
 class Ball {
-  constructor(x,y,xspeed,yspeed){
+  constructor(x,y){
     this.x = x;
     this.y = y;
-    this.xspeed = xspeed;
-    this.yspeed = yspeed;
+
   }
 
   drawBall(){
