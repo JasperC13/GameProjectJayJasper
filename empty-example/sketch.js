@@ -9,6 +9,9 @@ let borderRight;
 let borderleft;
 let borderTop;
 let borderBottom;
+let goal1;
+let goal2;
+
 
 
 
@@ -28,6 +31,8 @@ function setup() {
   borderTop = new Top(1,1, 551, 1 );
   borderBottom = new Bottom(1, 368, 551, 368);
   v1 = createVector(1,1);
+  goal1 = new Goal1(510.5, 161, 510.5, 206);
+  goal2 = new Goal2(40, 161, 40, 206);
 }
 
 function draw(){
@@ -39,13 +44,30 @@ function draw(){
 
   ball.drawBall();
   ball.moveBall();
-  ball.bouceBall();
   ball.bounceBall();
+  //ball.borderHitLeft();
+  ball.borderHit();
 
   borderTop.drawMe();
   borderRight.drawMe();
   borderLeft.drawMe();
   borderBottom.drawMe();
+
+  goal1.drawMe();
+  goal2.drawMe();
+
+  if(v1.x>2){
+    v1.x=2
+  }
+  if(v1.x<-2){
+    v1.x = -2
+  }
+  if(v1.y>2){
+    v1.y=2
+  }
+  if(v1.y<-2){
+    v1.y=-2
+  }
 
 }
 class Top {
@@ -135,6 +157,18 @@ class Player1 {
  if (keyIsDown(65)) { //if you hold the left arrow, move left by xspeed
    this.x -= this.xspeed;
  }
+ if(this.y>330){
+   this.y = 330
+ }
+ if(this.y<38){
+   this.y = 38
+ }
+ if(this.x>500){
+   this.x = 500
+ }
+ if(this.x<51){
+   this.x = 51
+ }
   }
 }
 
@@ -167,7 +201,19 @@ class Player2 {
  if (keyIsDown(LEFT_ARROW)) { //if you hold the left arrow, move left by xspeed
    this.x -= this.xspeed;
  }
-  }
+ if(this.y>330){
+   this.y = 330
+ }
+ if(this.y<38){
+   this.y = 38
+ }
+ if(this.x>500){
+   this.x = 500
+ }
+ if(this.x<51){
+   this.x = 51
+}
+ }
 }
 
 class Ball {
@@ -186,15 +232,41 @@ class Ball {
     this.x += v1.x;
     this.y += v1.y;
   }
-
-  bounceBall(){
-    if(this.y = 551){
-      v1 = v1(v1.x,-v1.y)
+//   borderHitLeft(){
+//     if(this.y > 368){
+//       this.y = 4
+//       //v1 = (-v1.x, -v1.y)
+// }
+//     if(this.y < 0){
+//       this.y = 364
+// }
+//     if(this.x < 0 ){
+//       this.x = 547
+//     }
+//     if(this.x > 551){
+//       this.x = 4
+//     }
+//
+//
+//   }
+  borderHit(){
+    if(this.y>335){
+      v1.y = -v1.y
     }
-
+    if(this.y<33){
+      v1.y = -v1.y
+    }
+    if(this.x>505){
+      v1.x = -v1.x
+    }
+    if(this.x<46){
+      v1.x = -v1.x
+    }
   }
 
-  bouceBall(){
+
+
+  bounceBall(){
     if(dist(p1.x,p1.y,ball.x,ball.y)<=15){
       let collision1x = (ball.x + p1.x)/2;
       let collision1y = (ball.y + p1.y)/2;
@@ -209,5 +281,40 @@ class Ball {
       v3.div(20);
       v1.add(v3);
     }
+  }
+}
+
+class Goal1 {
+  constructor(x, y, x2, y2){
+    this.x = x;
+    this.x2 = x2;
+    this.y2 = y2;
+    this.y = y;
+  }
+  drawMe(){
+    fill("black")
+    strokeWeight(2);
+    line(this.x, this.y, this.x2, this.y2)
+
+
+  // if(ball.x = 510.5 && ball.y > 161 && ball.y < 206){ //if touches - red scores
+  //   ball.x = 275.5
+  //   ball.y = 184
+  }
+
+  }
+//}
+
+class Goal2 {
+  constructor(x, y, x2, y2){
+    this.x = x;
+    this.x2 = x2;
+    this.y2 = y2;
+    this.y = y;
+  }
+  drawMe(){
+    fill("black")
+    strokeWeight(2);
+    line(this.x, this.y, this.x2, this.y2);
   }
 }
