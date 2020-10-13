@@ -11,6 +11,8 @@ let borderTop;
 let borderBottom;
 let goal1;
 let goal2;
+let p1Points=0;
+let p2Points=0;
 
 
 
@@ -23,14 +25,14 @@ function preload() {
 function setup() {
   createCanvas(551, 368);
 
-  p1 = new Player1(90,184,3,3);
-  p2 = new Player2(461,184,3,3);
+  p1 = new Player1(90,184,2,2);
+  p2 = new Player2(461,184,2,2);
   ball = new Ball(275.5,184);
   borderRight = new Right(551, 1, 551, 368);
   borderLeft = new Left(1, 1, 1, 368);
   borderTop = new Top(1,1, 551, 1 );
   borderBottom = new Bottom(1, 368, 551, 368);
-  v1 = createVector(1,1);
+  v1 = createVector(0,0);
   goal1 = new Goal1(510.5, 161, 510.5, 206);
   goal2 = new Goal2(40, 161, 40, 206);
 }
@@ -45,8 +47,10 @@ function draw(){
   ball.drawBall();
   ball.moveBall();
   ball.bounceBall();
-  //ball.borderHitLeft();
   ball.borderHit();
+  ball.goalCheck();
+  ball.points();
+  //ball.borderHitLeft();
 
   borderTop.drawMe();
   borderRight.drawMe();
@@ -56,20 +60,21 @@ function draw(){
   goal1.drawMe();
   goal2.drawMe();
 
-  if(v1.x>2){
-    v1.x=2
+  if(v1.x>1.5){
+    v1.x=1.5
   }
-  if(v1.x<-2){
-    v1.x = -2
+  if(v1.x<-1.5){
+    v1.x = -1.5
   }
-  if(v1.y>2){
-    v1.y=2
+  if(v1.y>1.5){
+    v1.y=1.5
   }
-  if(v1.y<-2){
-    v1.y=-2
+  if(v1.y<-1.5){
+    v1.y=-1.5
   }
 
 }
+
 class Top {
   constructor(x,y,x2,y2){
     this.x = x;
@@ -80,9 +85,9 @@ class Top {
 
   drawMe(){
     fill("black");
-    strokeWeight(10);
+    strokeWeight(5);
     line(this.x, this.y, this.x2, this.y2);
-}
+  }
 }
 class Right {
   constructor(x,y,x2,y2){
@@ -96,7 +101,7 @@ class Right {
     fill("black");
     strokeWeight(10);
     line(this.x, this.y, this.x2, this.y2);
-}
+  }
 }
 class Left {
   constructor(x,y,x2,y2){
@@ -110,7 +115,7 @@ class Left {
     fill("black");
     strokeWeight(10);
     line(this.x, this.y, this.x2, this.y2);
-}
+  }
 }
 class Bottom {
   constructor(x,y,x2,y2){
@@ -267,20 +272,49 @@ class Ball {
 
 
   bounceBall(){
-    if(dist(p1.x,p1.y,ball.x,ball.y)<=15){
+    if(dist(p1.x,p1.y,ball.x,ball.y)<=20){
       let collision1x = (ball.x + p1.x)/2;
       let collision1y = (ball.y + p1.y)/2;
       let v2 = createVector(collision1x - p1.x, collision1y - p1.y);
       v2.div(20);
       v1.add(v2);
     }
-    if(dist(p2.x,p2.y,ball.x,ball.y)<=15){
+    if(dist(p2.x,p2.y,ball.x,ball.y)<=20){
       let collision2x = (ball.x + p2.x)/2;
       let collision2y = (ball.y + p2.y)/2;
       let v3 = createVector(collision2x - p2.x, collision2y - p2.y);
       v3.div(20);
       v1.add(v3);
     }
+  }
+
+  goalCheck(){
+    if(this.x>=40 && this.x <=45 && this.y >= 161 && this.y <=206){
+      this.x=275.5;
+      this.y=184;
+      p1.x=235;
+      p1.y=184;
+      p2.x=461;
+      p2.y=184;
+      v1.x=0;
+      v1.y=0;
+      p2Points+=1;
+    }
+    if(this.x>=505.5 && this.x <=510.5 && this.y >= 161 && this.y <=206){
+      this.x=275.5;
+      this.y=184;
+      p1.x=90;
+      p1.y=184
+      p2.x=316;
+      p2.y=184
+      v1.x=0;
+      v1.y=0;
+      p1Points+=1;
+    }
+  }
+  points(){
+    textSize(32);
+    text(p1Points + ":" + p2Points, 252.5,27);
   }
 }
 
