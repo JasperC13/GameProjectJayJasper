@@ -14,7 +14,7 @@ let goal2;
 let p1Points=0;
 let p2Points=0;
 
-
+//all variables above
 
 
 function preload() {
