@@ -289,7 +289,7 @@ class Ball {
   }
 
   goalCheck(){
-    if(this.x>=40 && this.x <=45 && this.y >= 161 && this.y <=206){
+    if(this.x>=40 && this.x <=50 && this.y >= 161 && this.y <=206){
       this.x=275.5;
       this.y=184;
       p1.x=235;
@@ -300,7 +300,7 @@ class Ball {
       v1.y=0;
       p2Points+=1;
     }
-    if(this.x>=505.5 && this.x <=510.5 && this.y >= 161 && this.y <=206){
+    if(this.x>=500.5 && this.x <=510.5 && this.y >= 161 && this.y <=206){
       this.x=275.5;
       this.y=184;
       p1.x=90;
