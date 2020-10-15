@@ -13,12 +13,15 @@ let goal1;
 let goal2;
 let p1Points=0;
 let p2Points=0;
+let cheer;
 
 //all variables above
 
 
 function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
+  soundFormats('wav');
+  cheer = loadSound('assets/crowdcheer.wav');
 }
 
 
@@ -299,6 +302,8 @@ class Ball {
       v1.x=0;
       v1.y=0;
       p2Points+=1;
+      cheer.setVolume(0.1);
+      cheer.play();
     }
     if(this.x>=500.5 && this.x <=510.5 && this.y >= 161 && this.y <=206){
       this.x=275.5;
@@ -310,6 +315,8 @@ class Ball {
       v1.x=0;
       v1.y=0;
       p1Points+=1;
+      cheer.setVolume(0.1);
+      cheer.play();
     }
   }
   points(){
