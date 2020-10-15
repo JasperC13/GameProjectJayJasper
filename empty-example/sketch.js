@@ -14,6 +14,7 @@ let goal2;
 let p1Points=0;
 let p2Points=0;
 let cheer;
+let kick;
 
 //all variables above
 
@@ -22,6 +23,7 @@ function preload() {
   soccerField = loadImage('assets/SoccerField.jpg');
   soundFormats('wav');
   cheer = loadSound('assets/crowdcheer.wav');
+  kick = loadSound('assets/kick.wav');
 }
 
 
@@ -281,6 +283,8 @@ class Ball {
       let v2 = createVector(collision1x - p1.x, collision1y - p1.y);
       v2.div(20);
       v1.add(v2);
+      kick.setVolume(1);
+      kick.play();
     }
     if(dist(p2.x,p2.y,ball.x,ball.y)<=20){
       let collision2x = (ball.x + p2.x)/2;
@@ -288,6 +292,8 @@ class Ball {
       let v3 = createVector(collision2x - p2.x, collision2y - p2.y);
       v3.div(20);
       v1.add(v3);
+      kick.setVolume(1);
+      kick.play();
     }
   }
 
